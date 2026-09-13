@@ -29,12 +29,12 @@ export const COUNTRIES: Record<CountryCode, CountryConfig> = {
     phonePrefix: "+234",
     phonePlaceholder: "0801 234 5678",
     regionLabel: "State",
-    singlePrice: 85000,
-    singleOrig: 110000,
-    doublePrice: 160000,
-    doubleOrig: 220000,
-    triplePrice: 235000,
-    tripleOrig: 330000,
+    singlePrice: 45000,
+    singleOrig: 65000,
+    doublePrice: 85000,
+    doubleOrig: 130000,
+    triplePrice: 120000,
+    tripleOrig: 195000,
     regions: [
       "Abia",
       "Abuja (FCT)",
@@ -84,12 +84,12 @@ export const COUNTRIES: Record<CountryCode, CountryConfig> = {
     phonePrefix: "+233",
     phonePlaceholder: "024 123 4567",
     regionLabel: "Region",
-    singlePrice: 1250,
-    singleOrig: 1650,
-    doublePrice: 2350,
-    doubleOrig: 3300,
-    triplePrice: 3450,
-    tripleOrig: 4950,
+    singlePrice: 400,
+    singleOrig: 600,
+    doublePrice: 750,
+    doubleOrig: 1200,
+    triplePrice: 1050,
+    tripleOrig: 1800,
     regions: [
       "Greater Accra",
       "Ashanti",
@@ -118,12 +118,12 @@ export const COUNTRIES: Record<CountryCode, CountryConfig> = {
     phonePrefix: "+254",
     phonePlaceholder: "0712 345 678",
     regionLabel: "County",
-    singlePrice: 11500,
-    singleOrig: 15500,
-    doublePrice: 21500,
-    doubleOrig: 31000,
-    triplePrice: 31500,
-    tripleOrig: 46500,
+    singlePrice: 3999,
+    singleOrig: 6000,
+    doublePrice: 7500,
+    doubleOrig: 12000,
+    triplePrice: 10500,
+    tripleOrig: 18000,
     regions: [
       "Nairobi",
       "Mombasa",
@@ -164,20 +164,13 @@ export function formatCountryPrice(amount: number, country: CountryConfig): stri
 export function detectUserCountry(): CountryCode {
   if (typeof window === "undefined") return "NG";
 
-  // 1. Check if user already manually selected a country before
-  const saved = localStorage.getItem("ice_user_country") as CountryCode | null;
-  if (saved && COUNTRIES[saved]) {
-    return saved;
-  }
-
-  // 2. Detect via browser timezone
+  // Detect via browser timezone (Pure client-side heuristic)
   try {
     const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
     if (tz) {
       const lower = tz.toLowerCase();
       if (lower.includes("accra") || lower.includes("ghana")) return "GH";
       if (lower.includes("nairobi") || lower.includes("kenya")) return "KE";
-      if (lower.includes("lagos") || lower.includes("nigeria")) return "NG";
     }
   } catch (e) {
     // ignore

@@ -27,40 +27,41 @@ export function CurrencyProvider({ children }: { children: React.ReactNode }) {
   const [countryCode, setCountryCodeState] = useState<CountryCode>("NG");
 
   useEffect(() => {
-    // 1. Initial detection via localStorage or Timezone
-    const initial = detectUserCountry();
-    setCountryCodeState(initial);
+    // 1. Check if URL specifies country param (e.g. ?country=gh or ?country=ke)
+    if (typeof window !== "undefined") {
+      // Clear legacy stale cache if any
+      try {
+        localStorage.removeItem("ice_user_country");
+      } catch {}
 
-    // 2. If no explicit localStorage saved, perform a non-blocking background IP check
-    const saved = localStorage.getItem("ice_user_country");
-    if (!saved) {
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 2500);
+      const urlParams = new URLSearchParams(window.location.search);
+      const urlCountry = (urlParams.get("country") || urlParams.get("c"))?.toUpperCase() as CountryCode | undefined;
 
-      fetch("https://ipapi.co/json/", { signal: controller.signal })
-        .then((res) => res.json())
-        .then((data) => {
-          clearTimeout(timeoutId);
-          if (data && data.country_code) {
-            const cc = data.country_code.toUpperCase();
-            if (cc === "GH") setCountryCodeState("GH");
-            else if (cc === "KE") setCountryCodeState("KE");
-            else if (cc === "NG") setCountryCodeState("NG");
-          }
-        })
-        .catch(() => {
-          // Gracefully fallback to initial timezone-detected country
-        });
+      if (urlCountry && COUNTRIES[urlCountry]) {
+        setCountryCodeState(urlCountry);
+        return;
+      }
+    }
 
-      return () => clearTimeout(timeoutId);
+    // 2. Client-side heuristic detection via Browser Timezone (Instant, zero latency, no stale cache)
+    try {
+      const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || "";
+      const lower = tz.toLowerCase();
+      if (lower.includes("accra") || lower.includes("ghana")) {
+        setCountryCodeState("GH");
+      } else if (lower.includes("nairobi") || lower.includes("kenya")) {
+        setCountryCodeState("KE");
+      } else {
+        // Defaults to Nigeria (NGN) for Lagos, West Africa, and general visitors
+        setCountryCodeState("NG");
+      }
+    } catch {
+      setCountryCodeState("NG");
     }
   }, []);
 
   const setCountryCode = (code: CountryCode) => {
     setCountryCodeState(code);
-    if (typeof window !== "undefined") {
-      localStorage.setItem("ice_user_country", code);
-    }
   };
 
   const currentCountry = COUNTRIES[countryCode] || COUNTRIES.NG;

@@ -33,20 +33,20 @@ const PACK_DEFS: PackDef[] = [
   {
     id: "single",
     name: "1× Complete I.C.E JetPro 48V™ Kit",
-    description: "Includes 48V Gun, 2× Lithium-Ion Batteries, 5m Hose, Foam Bottle, Brass Connectors & Carry Case",
+    description: "Includes 48V Power Gun, 2× Lithium-Ion Batteries, 8m Draw Hose with Filter, 2× Spray Nozzles (0° & 40°), Soap Can Bottle, Fast Charger, Brass Fittings & Hard Case",
     badge: "Most Popular",
     popular: true,
   },
   {
     id: "double",
     name: "2× Complete I.C.E JetPro 48V™ Kits (Promo Double Pack)",
-    description: "2× Gun Bodies, 4× 48V Batteries, 2× 5m Hoses, 2× Foam Bottles, Connectors & 2× Molded Cases",
+    description: "2× Power Guns, 4× 48V Batteries, 2× 8m Draw Hoses, 4× Spray Nozzles, 2× Soap Can Bottles, 2× Fast Chargers & 2× Molded Hard Cases",
     badge: "Best Value",
   },
   {
     id: "triple",
-    name: "3× Complete I.C.E JetPro 48V™ Kits (Fleet / Commercial Pack)",
-    description: "3× Complete Sets for Multi-Car Families, Detailers, and Commercial Properties",
+    name: "3× Complete I.C.E JetPro 48V™ Kits (Commercial & Farm Tri-Pack)",
+    description: "3× Complete Outfits for Multi-Vehicle Families, Commercial Cleaners, Farm Crop Spraying & Estates",
     badge: "Maximum Savings",
   },
 ];
@@ -355,12 +355,19 @@ export default function OrderForm() {
 
                   <div className="text-left sm:text-right pl-8 sm:pl-0 shrink-0">
                     <div className="flex items-baseline gap-2 sm:justify-end">
-                      <span className="text-xs line-through text-[#9BA1AC]">{origPrice}</span>
+                      <span className="text-xs sm:text-sm line-through text-[#E23E2E] font-mono decoration-2">
+                        {origPrice}
+                      </span>
                       <span className="font-display text-2xl font-bold text-[#F3F1EC]">
                         {currentPrice}
                       </span>
                     </div>
-                    <span className="text-[11px] text-emerald-400 font-medium">Free Delivery</span>
+                    <div className="flex items-center gap-1.5 sm:justify-end mt-1">
+                      <span className="text-[10px] uppercase font-bold text-[#E23E2E] bg-[#E23E2E]/15 px-1.5 py-0.5 border border-[#E23E2E]/30">
+                        Price Slashed
+                      </span>
+                      <span className="text-[11px] text-emerald-400 font-medium">Free Delivery</span>
+                    </div>
                   </div>
                 </div>
               );

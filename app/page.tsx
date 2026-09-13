@@ -26,6 +26,7 @@ import {
   Flame,
   ArrowRight,
   Menu,
+  Sprout,
 } from "lucide-react";
 
 // Image Paths located in /public/images
@@ -35,6 +36,9 @@ const CASE_STUDIO_IMG = "/images/case.jpg";
 const CASE_REAL_IMG = "/images/case_closed_real.png";
 const ACTION_CAR_WASH_IMG = "/images/action_car_wash.jpg";
 const ACTION_PATIO_BLAST_IMG = "/images/action_patio_blast.jpg";
+const ACTION_FARM_SPRAY_IMG = "/images/action_farm_spray.jpg";
+const ACTION_COMPOUND_BLAST_IMG = "/images/action_compound_blast.jpg";
+const ACTION_AC_CLEAN_IMG = "/images/action_ac_clean.jpg";
 const BATTERY_SWAP_IMG = "/images/battery_swap.jpg";
 
 interface ContentsItem {
@@ -49,37 +53,51 @@ const CONTENTS: ContentsItem[] = [
   {
     id: 1,
     label: "2× 48V Lithium-Ion Batteries",
-    desc: "Swap packs mid-job — never wait on a charger. High-capacity cells with fast recharge.",
+    desc: "Dual high-capacity 48V lithium battery packs. Swap packs mid-job so you never pause for a recharge.",
     x: 80,
     y: 48,
   },
   {
     id: 2,
-    label: "Quick-connect brass fittings",
-    desc: "Threads onto any standard outdoor garden tap or bucket draw line. Zero tools required.",
+    label: "Quick-connect brass fittings & inlet filter",
+    desc: "Fine-mesh self-priming filter drops into any bucket, drum, or river. Also connects directly to outdoor taps.",
     x: 23,
     y: 48,
   },
   {
     id: 3,
-    label: "5m heavy-duty coiled hose",
-    desc: "Reach the far end of the driveway, vehicle, or patio with ease.",
+    label: "8m heavy-duty suction draw hose",
+    desc: "Extended 8-meter length lets you maneuver freely around trucks, compound perimeters, and agricultural beds.",
     x: 50,
     y: 23,
   },
   {
     id: 4,
-    label: "Foam cannon bottle",
-    desc: "Thick, clinging suds for pre-washing cars, bikes, and outdoor furniture.",
+    label: "Soap can / Foam cannon bottle",
+    desc: "Thick clinging suds for cars and bikes, or mixing liquid fertilizers & pest control chemicals on the farm.",
     x: 43,
     y: 75,
   },
   {
     id: 5,
-    label: "48V Power Gun Body",
-    desc: "High-torque pump, motor, and ergonomic safety trigger — all in one balanced grip.",
+    label: "48V High-Torque Power Gun Body",
+    desc: "Pure copper core pump motor, ergonomic anti-fatigue grip, and dual safety trigger switch.",
     x: 51,
     y: 53,
+  },
+  {
+    id: 6,
+    label: "2× Interchangeable Spray Nozzles",
+    desc: "Includes 0° high-pressure red blast nozzle (for dried mud/grime) and 40° white fan nozzle (for car washing & crop misting).",
+    x: 28,
+    y: 68,
+  },
+  {
+    id: 7,
+    label: "Rapid wall battery charger",
+    desc: "Smart charger with auto cut-off protection. Quickly powers up one pack while the other is in use.",
+    x: 74,
+    y: 72,
   },
 ];
 
@@ -90,20 +108,24 @@ interface FaqItem {
 
 const FAQS: FaqItem[] = [
   {
-    q: "How long does one battery last?",
-    a: "Runtime depends on pressure and nozzle setting, but most users get a full car wash or a small patio cleaned on a single charge. Because the kit includes two 48V packs, one can charge while the other is in use so you never experience downtime.",
+    q: "Can farmers use this for spraying crops and pest control?",
+    a: "Yes! Farmers across Nigeria, Ghana, and Kenya actively use the I.C.E JetPro 48V to spray crops, vegetables, cassava, and fruit orchards. It atomizes liquid fertilizers, pesticides, and insect repellents with steady cordless pressure. Simply drop the 8m suction line into a chemical bucket or drum — completely eliminating painful, exhausting knapsack backpack manual pumping.",
   },
   {
-    q: "Does it connect to a normal garden tap?",
-    a: "Yes. The included quick-connect fittings thread directly onto standard outdoor garden taps. No adapters, tools, or additional plumbing hardware required.",
+    q: "How long does one battery last and how fast does it charge?",
+    a: "Each 48V pack provides 35 to 45 minutes of continuous high-pressure performance. Because the kit includes two (2×) 48V batteries plus a rapid wall charger, one battery can charge while the other is in use so you never experience downtime.",
   },
   {
-    q: "What's actually in the case?",
-    a: "The complete kit includes: the 48V cordless gun body, two 48V lithium-ion battery packs, rapid wall charger, 5m coiled water hose, brass and quick-connect fittings, high-density foam cannon bottle, and a printed quick-start guide — all secured inside the custom-molded impact case.",
+    q: "Does it need running tap water, or can it draw from a bucket?",
+    a: "It does NOT require running tap water! The 8m heavy-duty hose includes a self-priming fine-mesh suction filter. You can drop it into any bucket, jerrycan, water drum, overhead tank, or stream. It also connects directly to standard outdoor garden taps.",
   },
   {
-    q: "Is it strong enough for real cleaning, not just rinsing?",
-    a: "Absolutely. Unlike low-power garden hose nozzle attachments, the I.C.E. gun is powered by a genuine 48V high-torque pump motor that generates intense pressure to strip dried mud, road grime, moss, and brake dust.",
+    q: "What is actually included inside the case?",
+    a: "The complete kit includes: 48V cordless power gun body, two (2×) 48V lithium-ion batteries, rapid wall charger, 8-meter suction hose with filter basket, two interchangeable spray nozzles (0° blast & 40° fan), soap can foam bottle, brass quick-connect fittings, and the custom-molded impact carry case.",
+  },
+  {
+    q: "Is it strong enough for deep cleaning, not just light rinsing?",
+    a: "Yes! Unlike flimsy garden hose attachments, the I.C.E JetPro 48V is driven by a pure copper 48V motor and high-torque pump that generates intense velocity to blast caked mud, tire grime, compound moss, and AC condenser fins.",
   },
 ];
 
@@ -280,17 +302,32 @@ function LandingPageContent() {
             No plug in sight.
           </h1>
           <p className="text-[#9BA1AC] text-base sm:text-lg leading-relaxed max-w-md mb-6 sm:mb-8">
-            Point it at the driveway, the car, or a mud-caked boot — the 48V battery does the
-            work a hose and wall outlet used to. Two packs included, so you finish before either
+            Point it at your car, the driveway, compound pavers, or farm crops — the 48V battery does the
+            work a generator and wall outlet used to. Two packs included, so you finish before either
             one runs dry.
           </p>
+
+          {/* PRICE SLASH BANNER */}
+          <div className="flex items-center gap-3 flex-wrap mb-4 bg-[#17191D] p-3 border border-[#F3F1EC]/10 inline-flex max-w-full">
+            <div className="flex items-baseline gap-2">
+              <span className="text-sm sm:text-base line-through text-[#E23E2E] font-mono decoration-2">
+                {formatPrice(country.singleOrig)}
+              </span>
+              <span className="font-display text-2xl sm:text-3xl font-bold text-[#F3F1EC]">
+                {formatPrice(country.singlePrice)}
+              </span>
+            </div>
+            <span className="bg-[#E23E2E]/20 text-[#E23E2E] border border-[#E23E2E]/40 text-[11px] font-display uppercase font-bold px-2.5 py-1 tracking-wider">
+              Flash Price Slashed
+            </span>
+          </div>
 
           <div className="flex items-center gap-3 sm:gap-4 flex-wrap mb-6 sm:mb-8">
             <a
               href="#buy"
               className="w-full sm:w-auto font-display bg-[#17B4C9] text-[#101114] font-bold text-base sm:text-lg px-8 sm:px-10 py-4 uppercase tracking-wide hover:bg-[#F3F1EC] transition-all inline-flex items-center justify-center gap-2.5 shadow-xl shadow-[#17B4C9]/25 teardrop-btn group"
             >
-              <span>Get I.C.E JetPro 48V™ — {formatPrice(country.singlePrice)}</span>
+              <span>Claim Slashed Offer — {formatPrice(country.singlePrice)}</span>
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </a>
             <span className="text-xs sm:text-sm text-[#9BA1AC] text-center sm:text-left w-full sm:w-auto">
@@ -343,8 +380,8 @@ function LandingPageContent() {
             <span className="text-sm text-[#9BA1AC]">lithium-ion packs</span>
           </div>
           <div className="flex items-baseline gap-2 justify-start md:justify-center">
-            <span className="font-display text-3xl font-bold text-[#17B4C9]">5m</span>
-            <span className="text-sm text-[#9BA1AC]">coiled hose</span>
+            <span className="font-display text-3xl font-bold text-[#17B4C9]">8m</span>
+            <span className="text-sm text-[#9BA1AC]">draw hose</span>
           </div>
           <div className="flex items-baseline gap-2 justify-start md:justify-center">
             <span className="font-display text-3xl font-bold text-[#17B4C9]">1</span>
@@ -353,70 +390,119 @@ function LandingPageContent() {
         </div>
       </section>
 
-      {/* REAL-WORLD ACTION SHOWCASE (NEW) */}
+      {/* REAL-WORLD ACTION SHOWCASE */}
       <section id="action" className="max-w-[1152px] mx-auto px-6 py-20 border-b border-[#F3F1EC]/10">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12">
           <div>
             <div className="text-xs uppercase tracking-wider text-[#17B4C9] font-semibold mb-2">
-              Performance In The Field
+              One Tool &bull; Endless Applications
             </div>
             <h2 className="font-display text-3xl sm:text-4xl font-bold">
-              See the 48V power in action
+              Far more than just a car washer
             </h2>
           </div>
           <p className="text-[#9BA1AC] max-w-md text-sm leading-relaxed">
-            From vehicle snow foam pre-washes to deep stone grime removal, the I.C.E JetPro 48V™ delivers
-            cordless versatility wherever you need it.
+            From spraying agricultural farmlands and blasting compound tiles to servicing air conditioning units and washing vehicles — the cordless 48V pump handles it all without cords or generators.
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {/* Action Card 1: Car Snow Foam */}
+          {/* Action Card 1: Farm Crop & Pest Spraying */}
           <div className="group border border-[#F3F1EC]/10 bg-[#17191D] overflow-hidden">
             <div className="relative overflow-hidden aspect-[16/9]">
               <Image
-                src={ACTION_CAR_WASH_IMG}
-                alt="I.C.E cordless gun washing luxury car with snow foam cannon"
+                src={ACTION_FARM_SPRAY_IMG}
+                alt="African farmer using 48V power spray gun to spray crops and vegetable beds in the field"
                 width={700}
                 height={394}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               />
-              <div className="absolute top-3 left-3 bg-[#101114]/90 backdrop-blur-sm border border-[#17B4C9]/40 text-[#17B4C9] text-xs font-display font-semibold px-2.5 py-1 uppercase">
-                Foam Cannon Detailing
+              <div className="absolute top-3 left-3 bg-[#101114]/90 backdrop-blur-sm border border-emerald-500/40 text-emerald-400 text-xs font-display font-semibold px-2.5 py-1 uppercase flex items-center gap-1.5">
+                <Sprout className="w-3.5 h-3.5" />
+                <span>Agriculture &amp; Pest Defense</span>
               </div>
             </div>
             <div className="p-6">
               <h3 className="font-display text-xl font-bold mb-2 text-[#F3F1EC]">
-                Thick, Clinging Foam Pre-Wash
+                Farm Crop Spraying &amp; Chemical Mist
               </h3>
               <p className="text-[#9BA1AC] text-sm leading-relaxed">
-                Connect the included foam bottle for a dense, clinging snow foam layer that lifts
-                dirt and brake dust before you touch the paint.
+                Drop the 8m suction line straight into a drum or bucket to mist liquid fertilizers,
+                pesticides, and insect repellents across vegetable beds and orchard trees. Say goodbye to exhausting, back-breaking manual knapsack pumps.
               </p>
             </div>
           </div>
 
-          {/* Action Card 2: High Pressure Jet */}
+          {/* Action Card 2: Compound Paver & Wall Blasting */}
           <div className="group border border-[#F3F1EC]/10 bg-[#17191D] overflow-hidden">
             <div className="relative overflow-hidden aspect-[16/9]">
               <Image
-                src={ACTION_PATIO_BLAST_IMG}
-                alt="I.C.E cordless gun blasting deep grime off patio stone"
+                src={ACTION_COMPOUND_BLAST_IMG}
+                alt="48V cordless pressure washer blasting green moss and red dirt off interlocking paving stones"
                 width={700}
                 height={394}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               />
               <div className="absolute top-3 left-3 bg-[#101114]/90 backdrop-blur-sm border border-[#E23E2E]/40 text-[#E23E2E] text-xs font-display font-semibold px-2.5 py-1 uppercase">
-                Deep Grime Blast
+                Compound &amp; Paver Blast
               </div>
             </div>
             <div className="p-6">
               <h3 className="font-display text-xl font-bold mb-2 text-[#F3F1EC]">
-                Focused High-Velocity Jet Stream
+                Interlocking Stones &amp; Perimeter Walls
               </h3>
               <p className="text-[#9BA1AC] text-sm leading-relaxed">
-                The precision red nozzle unleashes concentrated 48V pump pressure to strip green
-                mildew, moss, and caked mud off stone, concrete, and tires.
+                The precision 0° pinpoint red nozzle generates concentrated 48V water velocity to strip
+                baked-on green algae, stubborn red mud, and oil from compound driveways and security walls without commercial rental gear.
+              </p>
+            </div>
+          </div>
+
+          {/* Action Card 3: AC Outdoor Units & Solar Maintenance */}
+          <div className="group border border-[#F3F1EC]/10 bg-[#17191D] overflow-hidden">
+            <div className="relative overflow-hidden aspect-[16/9]">
+              <Image
+                src={ACTION_AC_CLEAN_IMG}
+                alt="Technician using cordless washer to clean outdoor air conditioner condenser fins and solar panels"
+                width={700}
+                height={394}
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute top-3 left-3 bg-[#101114]/90 backdrop-blur-sm border border-[#17B4C9]/40 text-[#17B4C9] text-xs font-display font-semibold px-2.5 py-1 uppercase">
+                HVAC &amp; Solar Panel Care
+              </div>
+            </div>
+            <div className="p-6">
+              <h3 className="font-display text-xl font-bold mb-2 text-[#F3F1EC]">
+                Air Conditioners, Solar Panels &amp; Radiators
+              </h3>
+              <p className="text-[#9BA1AC] text-sm leading-relaxed">
+                Safely clean dust and grease off outdoor AC condensing units, generator radiators, and rooftop solar panels. Cordless battery power means zero risk of high-voltage electric shocks near water.
+              </p>
+            </div>
+          </div>
+
+          {/* Action Card 4: Vehicle Foam Cannon Detailing */}
+          <div className="group border border-[#F3F1EC]/10 bg-[#17191D] overflow-hidden">
+            <div className="relative overflow-hidden aspect-[16/9]">
+              <Image
+                src={ACTION_CAR_WASH_IMG}
+                alt="I.C.E cordless gun washing luxury car with thick snow foam cannon"
+                width={700}
+                height={394}
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute top-3 left-3 bg-[#101114]/90 backdrop-blur-sm border border-[#17B4C9]/40 text-[#17B4C9] text-xs font-display font-semibold px-2.5 py-1 uppercase">
+                Car &amp; Fleet Foam Wash
+              </div>
+            </div>
+            <div className="p-6">
+              <h3 className="font-display text-xl font-bold mb-2 text-[#F3F1EC]">
+                Thick Foam Pre-Wash &amp; High-Pressure Rinse
+              </h3>
+              <p className="text-[#9BA1AC] text-sm leading-relaxed">
+                Connect the included soap can bottle for a dense, clinging snow foam layer that lifts
+                dirt and brake dust before you touch the paint. Switch to the 40° fan nozzle for a spotless rinse.
               </p>
             </div>
           </div>
@@ -445,11 +531,10 @@ function LandingPageContent() {
                     onClick={() => setActiveCallout(item.id)}
                     style={{ left: `${item.x}%`, top: `${item.y}%` }}
                     aria-label={item.label}
-                    className={`absolute -translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full font-display font-bold text-sm flex items-center justify-center transition-all duration-200 cursor-pointer ${
-                      isActive
+                    className={`absolute -translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full font-display font-bold text-sm flex items-center justify-center transition-all duration-200 cursor-pointer ${isActive
                         ? "bg-[#17B4C9] text-[#101114] border-2 border-[#17B4C9] scale-110 callout-active-pulse"
                         : "bg-[#101114]/90 text-[#F3F1EC] border-2 border-[#F3F1EC] hover:border-[#17B4C9] hover:text-[#17B4C9]"
-                    }`}
+                      }`}
                   >
                     {item.id}
                   </button>
@@ -465,16 +550,14 @@ function LandingPageContent() {
                   <button
                     key={item.id}
                     onClick={() => setActiveCallout(item.id)}
-                    className={`px-3.5 py-2 text-xs font-display uppercase tracking-wider shrink-0 border transition-all flex items-center gap-1.5 teardrop-btn-static ${
-                      isActive
+                    className={`px-3.5 py-2 text-xs font-display uppercase tracking-wider shrink-0 border transition-all flex items-center gap-1.5 teardrop-btn-static ${isActive
                         ? "bg-[#17B4C9] text-[#101114] border-[#17B4C9] font-bold shadow-md shadow-[#17B4C9]/20"
                         : "bg-[#101114] text-[#9BA1AC] border-[#F3F1EC]/15 hover:border-[#17B4C9]/50"
-                    }`}
+                      }`}
                   >
                     <span
-                      className={`w-4 h-4 rounded-full text-[10px] flex items-center justify-center font-bold ${
-                        isActive ? "bg-[#101114] text-[#17B4C9]" : "bg-[#17191D] text-[#F3F1EC]"
-                      }`}
+                      className={`w-4 h-4 rounded-full text-[10px] flex items-center justify-center font-bold ${isActive ? "bg-[#101114] text-[#17B4C9]" : "bg-[#17191D] text-[#F3F1EC]"
+                        }`}
                     >
                       {item.id}
                     </span>
@@ -501,16 +584,14 @@ function LandingPageContent() {
                   <button
                     key={item.id}
                     onClick={() => setActiveCallout(item.id)}
-                    className={`w-full text-left flex items-start gap-4 p-4 border-b transition-all duration-200 cursor-pointer ${
-                      isActive
+                    className={`w-full text-left flex items-start gap-4 p-4 border-b transition-all duration-200 cursor-pointer ${isActive
                         ? "border-[#17B4C9] bg-[#17191D]/80"
                         : "border-[#F3F1EC]/10 hover:border-[#F3F1EC]/30 bg-transparent"
-                    }`}
+                      }`}
                   >
                     <span
-                      className={`font-display font-bold text-lg w-6 shrink-0 transition-colors ${
-                        isActive ? "text-[#17B4C9]" : "text-[#9BA1AC]"
-                      }`}
+                      className={`font-display font-bold text-lg w-6 shrink-0 transition-colors ${isActive ? "text-[#17B4C9]" : "text-[#9BA1AC]"
+                        }`}
                     >
                       {item.id}
                     </span>
@@ -529,7 +610,7 @@ function LandingPageContent() {
 
             <div className="p-4 bg-[#17191D] border border-[#F3F1EC]/10 text-xs text-[#9BA1AC] flex items-center justify-between">
               <span>Click any numbered dot or item to inspect details</span>
-              <span className="font-display font-semibold text-[#17B4C9]">ITEM {activeCallout} OF 5</span>
+              <span className="font-display font-semibold text-[#17B4C9]">ITEM {activeCallout} OF {CONTENTS.length}</span>
             </div>
           </div>
         </div>
@@ -711,44 +792,54 @@ function LandingPageContent() {
 
       {/* USE CASES SECTION */}
       <section className="max-w-[1152px] mx-auto px-6 py-20 border-t border-[#F3F1EC]/10">
-        <h2 className="font-display text-3xl sm:text-4xl font-bold mb-10">
-          Wherever grime turns up
-        </h2>
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
+          <div>
+            <div className="text-xs uppercase tracking-wider text-[#17B4C9] font-semibold mb-2">
+              Beyond Just Car Washing
+            </div>
+            <h2 className="font-display text-3xl sm:text-4xl font-bold">
+              Built for farms, compounds, and heavy jobs
+            </h2>
+          </div>
+          <p className="text-[#9BA1AC] max-w-md text-sm leading-relaxed">
+            One 48V cordless tool handles vehicle detailing, agricultural crop spraying, and deep compound maintenance.
+          </p>
+        </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           <div className="p-6 bg-[#17191D] border border-[#F3F1EC]/10 hover:border-[#17B4C9]/40 transition-colors">
-            <Gauge className="w-7 h-7 text-[#E23E2E] mb-4" />
-            <h3 className="font-display text-lg font-semibold mb-2">Driveways &amp; decks</h3>
+            <Sprout className="w-7 h-7 text-[#17B4C9] mb-4" />
+            <h3 className="font-display text-lg font-semibold mb-2 text-[#F3F1EC]">Farms, crops &amp; pest control</h3>
             <p className="text-sm text-[#9BA1AC] leading-relaxed">
-              Blast off mildew, oil stains, and moss without renting an expensive commercial pressure
-              washer.
+              Farmers spray crops, orchard trees, cassava, and vegetables with liquid fertilizers,
+              pesticides, and insect repellents. Drop the 8m suction line into a chemical bucket or drum with zero manual knapsack pumping.
             </p>
           </div>
 
           <div className="p-6 bg-[#17191D] border border-[#F3F1EC]/10 hover:border-[#17B4C9]/40 transition-colors">
-            <Droplets className="w-7 h-7 text-[#E23E2E] mb-4" />
-            <h3 className="font-display text-lg font-semibold mb-2">Cars, trucks &amp; bikes</h3>
+            <Droplets className="w-7 h-7 text-[#17B4C9] mb-4" />
+            <h3 className="font-display text-lg font-semibold mb-2 text-[#F3F1EC]">Cars, SUVs, trucks &amp; bikes</h3>
             <p className="text-sm text-[#9BA1AC] leading-relaxed">
-              Foam cannon pre-soak plus high-velocity rinse, finished in one quick trip outside the
-              garage.
+              Snap on the foam cannon soap bottle for a thick pre-soak, then rinse with the 40° fan
+              spray nozzle. A showroom-grade car wash anywhere in under 15 minutes.
             </p>
           </div>
 
           <div className="p-6 bg-[#17191D] border border-[#F3F1EC]/10 hover:border-[#17B4C9]/40 transition-colors">
-            <ShieldCheck className="w-7 h-7 text-[#E23E2E] mb-4" />
-            <h3 className="font-display text-lg font-semibold mb-2">Muddy boots &amp; gear</h3>
+            <Gauge className="w-7 h-7 text-[#17B4C9] mb-4" />
+            <h3 className="font-display text-lg font-semibold mb-2 text-[#F3F1EC]">Interlocking tiles &amp; walls</h3>
             <p className="text-sm text-[#9BA1AC] leading-relaxed">
-              Hose off muddy hiking boots, mountain bikes, and outdoor gear before dirt tracks
-              inside.
+              The precision 0° pinpoint red nozzle strips green algae, moss, dried clay, and oil stains
+              off compound paving stones, concrete, security fences, and gutters.
             </p>
           </div>
 
           <div className="p-6 bg-[#17191D] border border-[#F3F1EC]/10 hover:border-[#17B4C9]/40 transition-colors">
-            <Package className="w-7 h-7 text-[#E23E2E] mb-4" />
-            <h3 className="font-display text-lg font-semibold mb-2">Patio furniture &amp; walls</h3>
+            <Wrench className="w-7 h-7 text-[#17B4C9] mb-4" />
+            <h3 className="font-display text-lg font-semibold mb-2 text-[#F3F1EC]">AC units, solar &amp; generators</h3>
             <p className="text-sm text-[#9BA1AC] leading-relaxed">
-              Clean into tight corners, wicker weaves, and gutters that a bucket and sponge simply
-              can't reach.
+              Clean outdoor AC condenser cooling fins, solar panels, and generator radiator grilles safely
+              with controlled water volume and zero electric shock hazards.
             </p>
           </div>
         </div>
@@ -762,21 +853,19 @@ function LandingPageContent() {
             <div className="flex items-center gap-2 mb-3">
               <button
                 onClick={() => setCaseViewMode("real")}
-                className={`text-xs font-display uppercase tracking-wider px-4 py-2 border transition-all cursor-pointer teardrop-btn-static ${
-                  caseViewMode === "real"
+                className={`text-xs font-display uppercase tracking-wider px-4 py-2 border transition-all cursor-pointer teardrop-btn-static ${caseViewMode === "real"
                     ? "bg-[#17B4C9] text-[#101114] border-[#17B4C9] font-bold shadow-md shadow-[#17B4C9]/20"
                     : "bg-[#17191D] text-[#9BA1AC] border-[#F3F1EC]/20 hover:text-[#F3F1EC]"
-                }`}
+                  }`}
               >
                 Actual Kit Case
               </button>
               <button
                 onClick={() => setCaseViewMode("studio")}
-                className={`text-xs font-display uppercase tracking-wider px-4 py-2 border transition-all cursor-pointer teardrop-btn-static ${
-                  caseViewMode === "studio"
+                className={`text-xs font-display uppercase tracking-wider px-4 py-2 border transition-all cursor-pointer teardrop-btn-static ${caseViewMode === "studio"
                     ? "bg-[#17B4C9] text-[#101114] border-[#17B4C9] font-bold shadow-md shadow-[#17B4C9]/20"
                     : "bg-[#17191D] text-[#9BA1AC] border-[#F3F1EC]/20 hover:text-[#F3F1EC]"
-                }`}
+                  }`}
               >
                 Studio Perspective
               </button>
@@ -804,9 +893,9 @@ function LandingPageContent() {
               One case. Everything stays put.
             </h2>
             <p className="text-[#9BA1AC] leading-relaxed mb-6">
-              The gun, both 48V batteries, wall charger, 5m hose, fittings, and foam cannon bottle all
-              click into a molded case built to take a few knocks — toss it in the trunk or hang it on
-              the garage pegboard between jobs.
+              The 48V power gun, both 48V batteries, rapid charger, 8m draw hose with filter, 2 interchangeable spray
+              nozzles, brass fittings, and soap can bottle all click into a molded impact case built to take a few knocks
+              — toss it in the trunk, take it to the farm, or store it in your garage between jobs.
             </p>
 
             <ul className="space-y-3 mb-8">
@@ -853,9 +942,8 @@ function LandingPageContent() {
                     {faq.q}
                   </span>
                   <ChevronDown
-                    className={`w-5 h-5 text-[#9BA1AC] shrink-0 transition-transform duration-200 ${
-                      isOpen ? "rotate-180 text-[#17B4C9]" : ""
-                    }`}
+                    className={`w-5 h-5 text-[#9BA1AC] shrink-0 transition-transform duration-200 ${isOpen ? "rotate-180 text-[#17B4C9]" : ""
+                      }`}
                   />
                 </button>
                 {isOpen && (
@@ -881,8 +969,8 @@ function LandingPageContent() {
               Cut the cord with I.C.E JetPro 48V™.
             </h2>
             <p className="text-[#9BA1AC] leading-relaxed text-sm sm:text-base">
-              Complete professional kit: 48V gun, two battery packs, rapid wall charger, 5m hose, quick
-              connectors, foam cannon bottle, and rugged molded case. Select your package and complete the order form below.
+              Complete professional kit: 48V power gun, two battery packs, rapid wall charger, 8m draw hose with
+              filter basket, two spray nozzles (0° blast &amp; 40° fan), soap can bottle, brass connectors, and rugged molded case. Select your package and complete the order form below.
             </p>
           </div>
 
@@ -915,7 +1003,7 @@ function LandingPageContent() {
         <div className="flex items-center justify-between gap-3 max-w-md mx-auto">
           <div>
             <div className="flex items-baseline gap-1.5">
-              <span className="text-[11px] text-[#9BA1AC] line-through">
+              <span className="text-[11px] text-[#E23E2E] line-through font-mono">
                 {formatPrice(country.singleOrig)}
               </span>
               <span className="font-display text-lg font-bold text-[#F3F1EC]">
