@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabaseClient";
 import { useCurrency } from "@/lib/currencyContext";
 import CountrySelector from "./CountrySelector";
@@ -51,6 +52,7 @@ const PACK_DEFS: PackDef[] = [
 ];
 
 export default function OrderForm() {
+  const router = useRouter();
   const { country, formatPrice } = useCurrency();
 
   const [selectedPackId, setSelectedPackId] = useState<string>("single");
@@ -165,10 +167,19 @@ export default function OrderForm() {
       if (error) {
         console.error("Supabase insert error:", error);
         setErrorMsg(error.message || "Failed to submit order. Please check your connection and try again.");
-      } else if (data && data.length > 0) {
-        setSubmittedOrder(data[0]);
       } else {
-        setSubmittedOrder(orderPayload);
+        const orderId = (data && data.length > 0 && data[0].id) ? data[0].id : "";
+        const queryParams = new URLSearchParams({
+          orderId: orderId,
+          name: `${firstName.trim()} ${lastName.trim()}`,
+          pack: packLabel,
+          amount: currentPriceFormatted,
+          phone: `${country.phonePrefix} ${phone.trim()}`,
+          address: address.trim(),
+          state: state.trim(),
+          country: country.name,
+        });
+        router.push(`/thank-you?${queryParams.toString()}`);
       }
     } catch (err: any) {
       console.error("Submission exception:", err);
