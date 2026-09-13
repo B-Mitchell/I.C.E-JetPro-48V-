@@ -1,5 +1,5 @@
-export type CurrencyCode = "NGN" | "GHS" | "KES" | "USD";
-export type CountryCode = "NG" | "GH" | "KE" | "GLOBAL";
+export type CurrencyCode = "NGN" | "GHS" | "KES";
+export type CountryCode = "NG" | "GH" | "KE";
 
 export interface CountryConfig {
   code: CountryCode;
@@ -155,38 +155,9 @@ export const COUNTRIES: Record<CountryCode, CountryConfig> = {
       "Other County",
     ],
   },
-  GLOBAL: {
-    code: "GLOBAL",
-    currency: "USD",
-    currencySymbol: "$",
-    name: "International",
-    flag: "🌐",
-    phonePrefix: "+1",
-    phonePlaceholder: "Phone with country code",
-    regionLabel: "State / Province",
-    singlePrice: 89,
-    singleOrig: 119,
-    doublePrice: 169,
-    doubleOrig: 238,
-    triplePrice: 249,
-    tripleOrig: 357,
-    regions: [
-      "North America",
-      "Europe",
-      "United Kingdom",
-      "Middle East",
-      "Asia / Pacific",
-      "Africa (Other)",
-      "South America",
-      "Other",
-    ],
-  },
 };
 
 export function formatCountryPrice(amount: number, country: CountryConfig): string {
-  if (country.currency === "USD") {
-    return `$${amount}`;
-  }
   return `${country.currencySymbol} ${amount.toLocaleString()}`;
 }
 
@@ -212,6 +183,6 @@ export function detectUserCountry(): CountryCode {
     // ignore
   }
 
-  // Default to Nigeria for West African launch, or override via async IP check
+  // Default to Nigeria
   return "NG";
 }

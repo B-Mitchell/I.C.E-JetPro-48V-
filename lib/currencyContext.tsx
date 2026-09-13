@@ -46,10 +46,6 @@ export function CurrencyProvider({ children }: { children: React.ReactNode }) {
             if (cc === "GH") setCountryCodeState("GH");
             else if (cc === "KE") setCountryCodeState("KE");
             else if (cc === "NG") setCountryCodeState("NG");
-            else if (cc !== "NG" && initial === "NG") {
-              // Outside NG/GH/KE, switch to global USD
-              setCountryCodeState("GLOBAL");
-            }
           }
         })
         .catch(() => {

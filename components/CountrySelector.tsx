@@ -29,7 +29,7 @@ export default function CountrySelector({
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const countryKeys: CountryCode[] = ["NG", "GH", "KE", "GLOBAL"];
+  const countryKeys: CountryCode[] = ["NG", "GH", "KE"];
 
   if (variant === "form") {
     return (
@@ -44,7 +44,7 @@ export default function CountrySelector({
           </span>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
           {countryKeys.map((code) => {
             const item = COUNTRIES[code];
             const isSelected = countryCode === code;
