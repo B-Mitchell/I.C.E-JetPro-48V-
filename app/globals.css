@@ -1,26 +1,73 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --carbon: #101114;
+  --panel: #17191d;
+  --cyan: #17b4c9;
+  --cyan-hover: #1ed1eb;
+  --red: #e23e2e;
+  --white: #f3f1ec;
+  --fog: #9ba1ac;
+  --hairline: rgba(243, 241, 236, 0.1);
+  --hairline-light: rgba(243, 241, 236, 0.2);
+  --max: 1152px;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+* {
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  background-color: var(--carbon);
+  color: var(--white);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  background-color: var(--carbon);
+  color: var(--white);
+  font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
+  line-height: 1.5;
+}
+
+h1,
+h2,
+h3,
+.font-display {
+  font-family: var(--font-oswald), "Arial Narrow", sans-serif;
+  letter-spacing: 0.02em;
+}
+
+.clip-polygon {
+  clip-path: polygon(6% 0, 100% 0, 94% 100%, 0 100%);
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(23, 180, 201, 0.6);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(23, 180, 201, 0);
+  }
+}
+
+.callout-active-pulse {
+  animation: pulse-glow 2s infinite ease-in-out;
+}
+
+/* Horizontal Teardrop Button Structure (Smooth rounded bulb on left, tapered point on right) */
+.teardrop-btn {
+  border-radius: 9999px 9999px 0px 9999px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.teardrop-btn:hover {
+  border-radius: 9999px 9999px 9999px 0px;
+  transform: translateY(-1px);
+}
+
+.teardrop-btn-static {
+  border-radius: 9999px 9999px 0px 9999px;
 }
