@@ -34,10 +34,10 @@ const HERO_IMG = "/images/hero.jpg";
 const FLATLAY_IMG = "/images/flatlay.jpg";
 const CASE_STUDIO_IMG = "/images/case.jpg";
 const CASE_REAL_IMG = "/images/case_closed_real.png";
-const ACTION_CAR_WASH_IMG = "/images/action_car_wash.jpg";
-const ACTION_PATIO_BLAST_IMG = "/images/action_patio_blast.jpg";
-const ACTION_FARM_SPRAY_IMG = "/images/action_farm_spray.jpg";
-const ACTION_COMPOUND_BLAST_IMG = "/images/action_compound_blast.jpg";
+const ACTION_CAR_WASH_IMG = "/images/action_snow_foam_v2.jpg";
+const ACTION_PATIO_BLAST_IMG = "/images/action_bucket_wash_v2.jpg";
+const ACTION_FARM_SPRAY_IMG = "/images/action_farm_crop_v2.jpg";
+const ACTION_COMPOUND_BLAST_IMG = "/images/action_compound_paver_v2.jpg";
 const ACTION_AC_CLEAN_IMG = "/images/action_ac_clean.jpg";
 const BATTERY_SWAP_IMG = "/images/battery_swap.jpg";
 
@@ -458,51 +458,50 @@ function LandingPageContent() {
             </div>
           </div>
 
-          {/* Action Card 3: AC Outdoor Units & Solar Maintenance */}
-          <div className="group border border-[#F3F1EC]/10 bg-[#17191D] overflow-hidden">
-            <div className="relative overflow-hidden aspect-[16/9]">
-              <Image
-                src={ACTION_AC_CLEAN_IMG}
-                alt="Technician using cordless washer to clean outdoor air conditioner condenser fins and solar panels"
-                width={700}
-                height={394}
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-              />
-              <div className="absolute top-3 left-3 bg-[#101114]/90 backdrop-blur-sm border border-[#17B4C9]/40 text-[#17B4C9] text-xs font-display font-semibold px-2.5 py-1 uppercase">
-                HVAC &amp; Solar Panel Care
-              </div>
-            </div>
-            <div className="p-6">
-              <h3 className="font-display text-xl font-bold mb-2 text-[#F3F1EC]">
-                Air Conditioners, Solar Panels &amp; Radiators
-              </h3>
-              <p className="text-[#9BA1AC] text-sm leading-relaxed">
-                Safely clean dust and grease off outdoor AC condensing units, generator radiators, and rooftop solar panels. Cordless battery power means zero risk of high-voltage electric shocks near water.
-              </p>
-            </div>
-          </div>
-
-          {/* Action Card 4: Vehicle Foam Cannon Detailing */}
+          {/* Action Card 3: Foam Cannon Pre-Wash */}
           <div className="group border border-[#F3F1EC]/10 bg-[#17191D] overflow-hidden">
             <div className="relative overflow-hidden aspect-[16/9]">
               <Image
                 src={ACTION_CAR_WASH_IMG}
-                alt="I.C.E cordless gun washing luxury car with thick snow foam cannon"
+                alt="Teal 48V cordless gun with snap-on foam bottle spraying thick snow foam onto vehicle"
                 width={700}
                 height={394}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               />
               <div className="absolute top-3 left-3 bg-[#101114]/90 backdrop-blur-sm border border-[#17B4C9]/40 text-[#17B4C9] text-xs font-display font-semibold px-2.5 py-1 uppercase">
-                Car &amp; Fleet Foam Wash
+                Soap Can Foam Cannon
               </div>
             </div>
             <div className="p-6">
               <h3 className="font-display text-xl font-bold mb-2 text-[#F3F1EC]">
-                Thick Foam Pre-Wash &amp; High-Pressure Rinse
+                Snap-On Snow Foam Soap Detailing
               </h3>
               <p className="text-[#9BA1AC] text-sm leading-relaxed">
-                Connect the included soap can bottle for a dense, clinging snow foam layer that lifts
-                dirt and brake dust before you touch the paint. Switch to the 40° fan nozzle for a spotless rinse.
+                Snap the included white soap bottle directly under the gun barrel for a dense, clinging snow foam blanket that dissolves grease, dirt, and road grime before you touch the paint.
+              </p>
+            </div>
+          </div>
+
+          {/* Action Card 4: Long Lance Draw From Bucket */}
+          <div className="group border border-[#F3F1EC]/10 bg-[#17191D] overflow-hidden">
+            <div className="relative overflow-hidden aspect-[16/9]">
+              <Image
+                src={ACTION_PATIO_BLAST_IMG}
+                alt="Teal 48V cordless gun with stainless steel nozzle lance drawing from bucket of water"
+                width={700}
+                height={394}
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute top-3 left-3 bg-[#101114]/90 backdrop-blur-sm border border-[#17B4C9]/40 text-[#17B4C9] text-xs font-display font-semibold px-2.5 py-1 uppercase">
+                Self-Priming Bucket Draw
+              </div>
+            </div>
+            <div className="p-6">
+              <h3 className="font-display text-xl font-bold mb-2 text-[#F3F1EC]">
+                Clean Anywhere — Zero Running Tap Needed
+              </h3>
+              <p className="text-[#9BA1AC] text-sm leading-relaxed">
+                Connect the stainless steel nozzle lance and drop the 8m suction line into a bucket, jerrycan, or drum. The internal copper-core pump self-primes instantly to deliver full high-velocity pressure.
               </p>
             </div>
           </div>
