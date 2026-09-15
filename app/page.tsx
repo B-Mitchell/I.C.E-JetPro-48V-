@@ -42,8 +42,8 @@ const ACTION_FARM_SPRAY_IMG = "/images/action_farm_crop_v2.jpg";
 const ACTION_COMPOUND_BLAST_IMG = "/images/action_compound_paver_v2.jpg";
 const ACTION_AC_CLEAN_IMG = "/images/action_ac_clean.jpg";
 const BATTERY_SWAP_IMG = "/images/battery_swap.jpg";
-const GUN_STUDIO_TEAL = "/images/gun_studio_black.jpg";
-const SPRAY_MODES_DEMO = "/images/spray_modes_black.jpg";
+const GUN_STUDIO_TEAL = "/images/gun_studio_v4.png";
+const SPRAY_MODES_DEMO = "/images/spray_modes_v4.jpg";
 const BRASS_QUICK_CONNECT = "/images/brass_quick_connect.jpg";
 const BATTERY_DETACHABLE_TEAL = "/images/battery_detachable_teal.jpg";
 
