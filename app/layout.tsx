@@ -140,7 +140,7 @@ export default function RootLayout({
       {
         "@type": "Offer",
         priceCurrency: "KES",
-        price: "3999",
+        price: "4500",
         itemCondition: "https://schema.org/NewCondition",
         availability: "https://schema.org/InStock",
         priceValidUntil: "2027-12-31",

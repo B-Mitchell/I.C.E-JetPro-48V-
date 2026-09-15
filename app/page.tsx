@@ -27,6 +27,8 @@ import {
   ArrowRight,
   Menu,
   Sprout,
+  Play,
+  HelpCircle,
 } from "lucide-react";
 
 // Image Paths located in /public/images
@@ -40,6 +42,10 @@ const ACTION_FARM_SPRAY_IMG = "/images/action_farm_crop_v2.jpg";
 const ACTION_COMPOUND_BLAST_IMG = "/images/action_compound_paver_v2.jpg";
 const ACTION_AC_CLEAN_IMG = "/images/action_ac_clean.jpg";
 const BATTERY_SWAP_IMG = "/images/battery_swap.jpg";
+const GUN_STUDIO_TEAL = "/images/gun_studio_teal.jpg";
+const SPRAY_MODES_DEMO = "/images/spray_modes_demo.jpg";
+const BRASS_QUICK_CONNECT = "/images/brass_quick_connect.jpg";
+const BATTERY_DETACHABLE_TEAL = "/images/battery_detachable_teal.jpg";
 
 interface ContentsItem {
   id: number;
@@ -127,10 +133,15 @@ const FAQS: FaqItem[] = [
     q: "Is it strong enough for deep cleaning, not just light rinsing?",
     a: "Yes! Unlike flimsy garden hose attachments, the I.C.E JetPro 48V is driven by a pure copper 48V motor and high-torque pump that generates intense velocity to blast caked mud, tire grime, compound moss, and AC condenser fins.",
   },
+  {
+    q: "What should I do if the motor runs but doesn't pull water after storage?",
+    a: "Do not worry — your machine has NOT gone bad! Over time or when stored away dry, the internal pump cylinder experiences natural dryness and simply loses its vacuum seal. To fix this in 30 seconds: pour a small splash of clean water directly into the intake nozzle to lubricate the internal silicone valve (as demonstrated in our troubleshooting video below). Re-attach your hose, turn it on, and the pump will instantly self-prime and fire at full high pressure.",
+  },
 ];
 
 function LandingPageContent() {
   const { country, formatPrice } = useCurrency();
+  const [heroView, setHeroView] = useState<"gun" | "case">("gun");
   const [activeCallout, setActiveCallout] = useState<number>(1);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [quantity, setQuantity] = useState<number>(1);
@@ -176,12 +187,19 @@ function LandingPageContent() {
           </a>
 
           {/* Desktop Nav Links */}
-          <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-[#9BA1AC]">
+          <nav className="hidden md:flex items-center gap-6 lg:gap-7 text-sm font-medium text-[#9BA1AC]">
             <a href="#contents" className="hover:text-[#F3F1EC] transition-colors">
               In The Case
             </a>
+            <a href="#spray-modes" className="hover:text-[#F3F1EC] transition-colors">
+              Spray Modes
+            </a>
             <a href="#action" className="hover:text-[#F3F1EC] transition-colors">
               In Action
+            </a>
+            <a href="#videos" className="hover:text-[#F3F1EC] transition-colors flex items-center gap-1.5 text-[#17B4C9]">
+              <Play className="w-3.5 h-3.5 fill-[#17B4C9]" />
+              <span>Live Videos</span>
             </a>
             <a href="#features" className="hover:text-[#F3F1EC] transition-colors">
               Features
@@ -240,12 +258,28 @@ function LandingPageContent() {
                 <span className="text-xs text-[#17B4C9] font-mono">01</span>
               </a>
               <a
+                href="#spray-modes"
+                onClick={() => setMobileMenuOpen(false)}
+                className="py-2.5 px-3 hover:bg-[#101114] hover:text-[#17B4C9] transition-colors border-b border-[#F3F1EC]/5 flex items-center justify-between"
+              >
+                <span>3 Spray Modes</span>
+                <span className="text-xs text-[#17B4C9] font-mono">02</span>
+              </a>
+              <a
                 href="#action"
                 onClick={() => setMobileMenuOpen(false)}
                 className="py-2.5 px-3 hover:bg-[#101114] hover:text-[#17B4C9] transition-colors border-b border-[#F3F1EC]/5 flex items-center justify-between"
               >
                 <span>Performance In Action</span>
-                <span className="text-xs text-[#17B4C9] font-mono">02</span>
+                <span className="text-xs text-[#17B4C9] font-mono">03</span>
+              </a>
+              <a
+                href="#videos"
+                onClick={() => setMobileMenuOpen(false)}
+                className="py-2.5 px-3 hover:bg-[#101114] text-[#17B4C9] transition-colors border-b border-[#F3F1EC]/5 flex items-center justify-between"
+              >
+                <span>Live Videos &amp; Troubleshoot</span>
+                <span className="text-xs text-[#17B4C9] font-mono">04</span>
               </a>
               <a
                 href="#features"
@@ -253,7 +287,7 @@ function LandingPageContent() {
                 className="py-2.5 px-3 hover:bg-[#101114] hover:text-[#17B4C9] transition-colors border-b border-[#F3F1EC]/5 flex items-center justify-between"
               >
                 <span>Key Features</span>
-                <span className="text-xs text-[#17B4C9] font-mono">03</span>
+                <span className="text-xs text-[#17B4C9] font-mono">05</span>
               </a>
               <a
                 href="#compare"
@@ -261,7 +295,7 @@ function LandingPageContent() {
                 className="py-2.5 px-3 hover:bg-[#101114] hover:text-[#17B4C9] transition-colors border-b border-[#F3F1EC]/5 flex items-center justify-between"
               >
                 <span>Cordless vs Corded</span>
-                <span className="text-xs text-[#17B4C9] font-mono">04</span>
+                <span className="text-xs text-[#17B4C9] font-mono">06</span>
               </a>
               <a
                 href="#faq"
@@ -269,7 +303,7 @@ function LandingPageContent() {
                 className="py-2.5 px-3 hover:bg-[#101114] hover:text-[#17B4C9] transition-colors border-b border-[#F3F1EC]/5 flex items-center justify-between"
               >
                 <span>FAQ</span>
-                <span className="text-xs text-[#17B4C9] font-mono">05</span>
+                <span className="text-xs text-[#17B4C9] font-mono">07</span>
               </a>
             </div>
 
@@ -352,15 +386,40 @@ function LandingPageContent() {
         </div>
 
         <div className="relative mt-2 md:mt-0">
+          {/* Hero Visual Switcher Tabs */}
+          <div className="flex items-center gap-2 mb-3">
+            <button
+              onClick={() => setHeroView("gun")}
+              className={`text-xs font-display uppercase tracking-wider px-3.5 py-1.5 border transition-all cursor-pointer teardrop-btn-static ${heroView === "gun"
+                  ? "bg-[#17B4C9] text-[#101114] border-[#17B4C9] font-bold shadow-md shadow-[#17B4C9]/20"
+                  : "bg-[#17191D] text-[#9BA1AC] border-[#F3F1EC]/20 hover:text-[#F3F1EC]"
+                }`}
+            >
+              Assembled Gun
+            </button>
+            <button
+              onClick={() => setHeroView("case")}
+              className={`text-xs font-display uppercase tracking-wider px-3.5 py-1.5 border transition-all cursor-pointer teardrop-btn-static ${heroView === "case"
+                  ? "bg-[#17B4C9] text-[#101114] border-[#17B4C9] font-bold shadow-md shadow-[#17B4C9]/20"
+                  : "bg-[#17191D] text-[#9BA1AC] border-[#F3F1EC]/20 hover:text-[#F3F1EC]"
+                }`}
+            >
+              Complete Kit In Case
+            </button>
+          </div>
+
           <div className="clip-polygon overflow-hidden border border-[#F3F1EC]/10 bg-[#17191D] relative group">
             <Image
-              src={HERO_IMG}
-              alt="48V cordless cleaning gun kit, open case"
+              src={heroView === "gun" ? GUN_STUDIO_TEAL : HERO_IMG}
+              alt={heroView === "gun" ? "I.C.E JetPro 48V teal cordless pressure washer gun with metal lance and foam cannon" : "48V cordless cleaning gun kit, open case"}
               width={700}
               height={520}
               priority
-              className="w-full h-[320px] sm:h-[420px] md:h-[480px] object-cover group-hover:scale-105 transition-transform duration-500"
+              className={`w-full h-[320px] sm:h-[420px] md:h-[480px] group-hover:scale-105 transition-transform duration-500 ${heroView === "gun" ? "object-contain p-4 bg-[#14161B]" : "object-cover"}`}
             />
+            <div className="absolute top-3 right-3 text-[10px] text-[#9BA1AC] uppercase font-mono bg-[#101114]/85 px-2 py-1 border border-[#F3F1EC]/10">
+              {heroView === "gun" ? "Studio Spec Profile" : "Unboxed Actual Kit"}
+            </div>
           </div>
           <div className="absolute -bottom-3 left-2 sm:-bottom-4 sm:-left-4 bg-[#E23E2E] text-[#F3F1EC] font-display font-semibold text-xs sm:text-sm tracking-wider uppercase px-3 sm:px-4 py-2 sm:py-2.5 shadow-xl">
             2 batteries included
@@ -386,6 +445,121 @@ function LandingPageContent() {
           <div className="flex items-baseline gap-2 justify-start md:justify-center">
             <span className="font-display text-3xl font-bold text-[#17B4C9]">1</span>
             <span className="text-sm text-[#9BA1AC]">molded carry case</span>
+          </div>
+        </div>
+      </section>
+
+      {/* 3 QUICK-SWITCH SPRAY MODES SECTION */}
+      <section id="spray-modes" className="max-w-[1152px] mx-auto px-4 sm:px-6 py-16 sm:py-20 border-b border-[#F3F1EC]/10">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10 sm:mb-12">
+          <div>
+            <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#17B4C9] mb-2 bg-[#17191D] px-3 py-1 border border-[#17B4C9]/30">
+              <Sparkles className="w-3.5 h-3.5" />
+              <span>Interchangeable Quick-Connect Nozzles</span>
+            </div>
+            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold">
+              3 Precision Spray Modes
+            </h2>
+          </div>
+          <p className="text-[#9BA1AC] max-w-md text-sm leading-relaxed">
+            Switch from rich snow foam auto shampoo to a laser-focused mud blaster or a gentle crop mist in 2 seconds — completely tool-free with solid brass couplings.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          {/* Main Visual: 3 Modes Demonstration */}
+          <div className="lg:col-span-7 bg-[#17191D] border border-[#F3F1EC]/10 p-2 overflow-hidden group">
+            <div className="relative overflow-hidden bg-white">
+              <Image
+                src={SPRAY_MODES_DEMO}
+                alt="Three interchangeable spray modes: 40 degree fan spray, 0 degree pinpoint jet, and snow foam cannon"
+                width={700}
+                height={700}
+                className="w-full h-auto object-contain group-hover:scale-[1.02] transition-transform duration-500"
+              />
+              <div className="absolute top-3 left-3 bg-[#101114]/90 backdrop-blur-sm border border-[#17B4C9]/40 text-[#17B4C9] text-xs font-display font-bold px-3 py-1 uppercase">
+                High-Speed Studio Demonstration
+              </div>
+            </div>
+          </div>
+
+          {/* Mode Breakdown Cards */}
+          <div className="lg:col-span-5 space-y-4">
+            {/* Mode 1: 40° Fan Spray */}
+            <div className="p-5 bg-[#17191D] border border-[#F3F1EC]/10 hover:border-[#17B4C9]/50 transition-colors">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-xs font-mono font-bold text-[#17B4C9] uppercase tracking-wider">
+                  MODE 01 &bull; 40&deg; FAN SPRAY
+                </span>
+                <span className="text-[11px] bg-white/10 text-[#F3F1EC] px-2 py-0.5 font-display uppercase font-semibold">
+                  White Nozzle
+                </span>
+              </div>
+              <h3 className="font-display text-lg font-bold text-[#F3F1EC] mb-1.5">
+                Wide Rinsing &amp; Agricultural Crop Mist
+              </h3>
+              <p className="text-xs sm:text-sm text-[#9BA1AC] leading-relaxed">
+                Even fan pattern creates wide coverage to swiftly rinse vehicle soap, wash down glass windows, or gently mist farmlands with liquid fertilizer without damaging fragile seedling leaves.
+              </p>
+            </div>
+
+            {/* Mode 2: 0° Pinpoint Laser Jet */}
+            <div className="p-5 bg-[#17191D] border border-[#F3F1EC]/10 hover:border-[#E23E2E]/50 transition-colors">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-xs font-mono font-bold text-[#E23E2E] uppercase tracking-wider">
+                  MODE 02 &bull; 0&deg; PINPOINT JET
+                </span>
+                <span className="text-[11px] bg-[#E23E2E]/20 text-[#E23E2E] border border-[#E23E2E]/40 px-2 py-0.5 font-display uppercase font-semibold">
+                  Red Blast Nozzle
+                </span>
+              </div>
+              <h3 className="font-display text-lg font-bold text-[#F3F1EC] mb-1.5">
+                Intense Concentrated Grime &amp; Moss Blasting
+              </h3>
+              <p className="text-xs sm:text-sm text-[#9BA1AC] leading-relaxed">
+                Ultra-concentrated straight stream focuses the full 48V velocity into a surgical pinpoint to blast caked dried mud from tire rims, green algae on compound pavers, and stubborn grease.
+              </p>
+            </div>
+
+            {/* Mode 3: Snow Foam Cannon */}
+            <div className="p-5 bg-[#17191D] border border-[#F3F1EC]/10 hover:border-[#17B4C9]/50 transition-colors">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-xs font-mono font-bold text-[#17B4C9] uppercase tracking-wider">
+                  MODE 03 &bull; SNOW FOAM CANNON
+                </span>
+                <span className="text-[11px] bg-[#17B4C9]/20 text-[#17B4C9] border border-[#17B4C9]/40 px-2 py-0.5 font-display uppercase font-semibold">
+                  Soap Can Bottle
+                </span>
+              </div>
+              <h3 className="font-display text-lg font-bold text-[#F3F1EC] mb-1.5">
+                Clinging Suds Pre-Wash &amp; Chemical Sprayer
+              </h3>
+              <p className="text-xs sm:text-sm text-[#9BA1AC] leading-relaxed">
+                Clicks directly onto the lance to atomize liquid car wash shampoo into a dense clinging foam blanket that dissolves grit before wiping, or dispenses liquid insect repellents on farm crops.
+              </p>
+            </div>
+
+            {/* Brass Quick Connect Feature Box */}
+            <div className="p-4 bg-[#101114] border border-[#17B4C9]/30 flex items-center gap-4">
+              <div className="w-16 h-16 shrink-0 overflow-hidden border border-[#F3F1EC]/10 relative bg-white">
+                <Image
+                  src={BRASS_QUICK_CONNECT}
+                  alt="Solid brass quick connect collar mechanism"
+                  width={100}
+                  height={100}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div>
+                <div className="text-xs font-display font-bold uppercase text-[#17B4C9] flex items-center gap-1.5">
+                  <CheckCircle2 className="w-3.5 h-3.5" />
+                  <span>Solid Brass Quick-Coupling</span>
+                </div>
+                <p className="text-xs text-[#9BA1AC] mt-0.5">
+                  Pull back the knurled collar, snap in any nozzle, release to lock. 100% leak-proof, zero tools required.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -503,6 +677,123 @@ function LandingPageContent() {
               <p className="text-[#9BA1AC] text-sm leading-relaxed">
                 Connect the stainless steel nozzle lance and drop the 8m suction line into a bucket, jerrycan, or drum. The internal copper-core pump self-primes instantly to deliver full high-velocity pressure.
               </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* VIDEO DEMONSTRATION & SELF-SERVICE TROUBLESHOOT SECTION */}
+      <section id="videos" className="max-w-[1152px] mx-auto px-4 sm:px-6 py-16 sm:py-20 border-b border-[#F3F1EC]/10">
+        <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
+          <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#17B4C9] mb-3 bg-[#17191D] px-3.5 py-1.5 border border-[#17B4C9]/30">
+            <Play className="w-3.5 h-3.5 fill-[#17B4C9]" />
+            <span>REAL-WORLD ACTION &amp; OWNER SUPPORT</span>
+          </div>
+          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
+            See It In Action &bull; 30-Second Maintenance Guide
+          </h2>
+          <p className="text-[#9BA1AC] text-sm sm:text-base leading-relaxed">
+            Watch real unboxing and high-pressure blasting performance, plus our essential owner's video showing how to effortlessly prime your pump after storage.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10">
+          {/* Video 1: Real Action Demo */}
+          <div className="bg-[#17191D] border border-[#F3F1EC]/10 overflow-hidden flex flex-col justify-between">
+            <div className="p-6 border-b border-[#F3F1EC]/10">
+              <div className="flex items-center justify-between gap-2 mb-2">
+                <span className="text-xs font-mono font-bold text-[#17B4C9] uppercase tracking-wider">
+                  VIDEO DEMO 01
+                </span>
+                <span className="text-[10px] sm:text-xs bg-[#17B4C9]/20 text-[#17B4C9] border border-[#17B4C9]/30 px-2 py-0.5 font-display uppercase font-semibold">
+                  Live Performance
+                </span>
+              </div>
+              <h3 className="font-display text-xl sm:text-2xl font-bold text-[#F3F1EC]">
+                I.C.E JetPro 48V™ Real-World Pressure Test
+              </h3>
+              <p className="text-xs sm:text-sm text-[#9BA1AC] mt-1.5 leading-relaxed">
+                Watch the kit drawn straight from water, blasting high-velocity streams onto dirty surfaces with effortless cordless freedom.
+              </p>
+            </div>
+
+            {/* Video Container (Vertical / 9:16 Shorts Responsive Embed) */}
+            <div className="p-4 sm:p-6 bg-[#101114] flex justify-center">
+              <div className="relative w-full max-w-[340px] aspect-[9/16] rounded-lg overflow-hidden border border-[#F3F1EC]/15 bg-black shadow-2xl">
+                <iframe
+                  src="https://www.youtube.com/embed/xW8VQjFMXsM"
+                  title="I.C.E JetPro 48V In Action"
+                  className="w-full h-full"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              </div>
+            </div>
+
+            <div className="p-4 sm:p-5 bg-[#17191D] border-t border-[#F3F1EC]/10 text-xs text-[#9BA1AC] flex items-center justify-between">
+              <span className="flex items-center gap-1.5 text-[#F3F1EC] font-display font-semibold">
+                <CheckCircle2 className="w-4 h-4 text-[#17B4C9]" />
+                Zero setup delay &bull; Dual 48V power
+              </span>
+              <a
+                href="#buy"
+                className="text-[#17B4C9] hover:underline font-mono uppercase text-[11px]"
+              >
+                Order Kit &rarr;
+              </a>
+            </div>
+          </div>
+
+          {/* Video 2: Troubleshoot & Maintenance Guide */}
+          <div className="bg-[#17191D] border border-[#F3F1EC]/10 overflow-hidden flex flex-col justify-between">
+            <div className="p-6 border-b border-[#F3F1EC]/10">
+              <div className="flex items-center justify-between gap-2 mb-2">
+                <span className="text-xs font-mono font-bold text-amber-400 uppercase tracking-wider">
+                  OWNER GUIDE 02
+                </span>
+                <span className="text-[10px] sm:text-xs bg-amber-400/20 text-amber-400 border border-amber-400/30 px-2 py-0.5 font-display uppercase font-semibold">
+                  Self-Service Primer
+                </span>
+              </div>
+              <h3 className="font-display text-xl sm:text-2xl font-bold text-[#F3F1EC]">
+                Engine Dryness Quick Fix &bull; 30-Second Guide
+              </h3>
+              <p className="text-xs sm:text-sm text-[#9BA1AC] mt-1.5 leading-relaxed">
+                Stored your machine for a while? Learn how to prime the internal pump cylinder and restore 100% full pressure instantly.
+              </p>
+            </div>
+
+            {/* Video Container (Vertical / 9:16 Shorts Responsive Embed) */}
+            <div className="p-4 sm:p-6 bg-[#101114] flex justify-center">
+              <div className="relative w-full max-w-[340px] aspect-[9/16] rounded-lg overflow-hidden border border-[#F3F1EC]/15 bg-black shadow-2xl">
+                <iframe
+                  src="https://www.youtube.com/embed/5LiUoOW8_tg"
+                  title="I.C.E JetPro 48V Troubleshoot and Maintenance Guide"
+                  className="w-full h-full"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              </div>
+            </div>
+
+            {/* Crucial Reassurance Notice */}
+            <div className="p-4 sm:p-6 bg-[#131519] border-t border-amber-500/20">
+              <div className="flex items-start gap-3">
+                <div className="p-2 bg-amber-500/10 border border-amber-500/30 text-amber-400 shrink-0">
+                  <Wrench className="w-4 h-4" />
+                </div>
+                <div className="space-y-1">
+                  <h4 className="text-xs font-display font-bold uppercase tracking-wide text-amber-400">
+                    Important Note for Owners — Natural Pump Dryness
+                  </h4>
+                  <p className="text-xs text-[#9BA1AC] leading-relaxed">
+                    Over time or after prolonged storage in the case, the internal pump cylinder and silicone seals experience natural dryness. Customers sometimes worry the machine has developed a fault — <span className="text-[#F3F1EC] font-semibold">meanwhile the machine only experienced temporary dryness!</span>
+                  </p>
+                  <p className="text-xs text-[#9BA1AC] leading-relaxed">
+                    As demonstrated in this video, all you need to do is add a splash of water directly into the intake to lubricate the chamber. The machine creates immediate suction and fires at 100% full pressure again!
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -642,13 +933,13 @@ function LandingPageContent() {
           <div className="bg-[#101114] p-8 flex flex-col justify-between group hover:bg-[#17191D] transition-colors">
             <div>
               <Battery className="w-8 h-8 text-[#17B4C9] mb-4 group-hover:scale-110 transition-transform" />
-              <div className="relative mb-4 overflow-hidden border border-[#F3F1EC]/10 aspect-[4/3]">
+              <div className="relative mb-4 overflow-hidden border border-[#F3F1EC]/10 aspect-[4/3] bg-[#14161B]">
                 <Image
-                  src={BATTERY_SWAP_IMG}
+                  src={BATTERY_DETACHABLE_TEAL}
                   alt="48V Battery Pack click-in mechanism"
                   width={320}
                   height={240}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  className="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-300"
                 />
               </div>
               <h3 className="font-display text-2xl font-bold mb-2">Two batteries, zero downtime</h3>
