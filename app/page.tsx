@@ -36,14 +36,14 @@ const HERO_IMG = "/images/hero.jpg";
 const FLATLAY_IMG = "/images/flatlay.jpg";
 const CASE_STUDIO_IMG = "/images/case.jpg";
 const CASE_REAL_IMG = "/images/case_closed_real.png";
-const ACTION_CAR_WASH_IMG = "/images/action_snow_foam_v2.jpg";
+const ACTION_CAR_WASH_IMG = "/images/action_snow_foam_black.jpg";
 const ACTION_PATIO_BLAST_IMG = "/images/action_bucket_wash_v2.jpg";
 const ACTION_FARM_SPRAY_IMG = "/images/action_farm_crop_v2.jpg";
 const ACTION_COMPOUND_BLAST_IMG = "/images/action_compound_paver_v2.jpg";
 const ACTION_AC_CLEAN_IMG = "/images/action_ac_clean.jpg";
 const BATTERY_SWAP_IMG = "/images/battery_swap.jpg";
-const GUN_STUDIO_TEAL = "/images/gun_studio_teal.jpg";
-const SPRAY_MODES_DEMO = "/images/spray_modes_demo.jpg";
+const GUN_STUDIO_TEAL = "/images/gun_studio_black.jpg";
+const SPRAY_MODES_DEMO = "/images/spray_modes_black.jpg";
 const BRASS_QUICK_CONNECT = "/images/brass_quick_connect.jpg";
 const BATTERY_DETACHABLE_TEAL = "/images/battery_detachable_teal.jpg";
 
@@ -651,7 +651,7 @@ function LandingPageContent() {
                 Snap-On Snow Foam Soap Detailing
               </h3>
               <p className="text-[#9BA1AC] text-sm leading-relaxed">
-                Snap the included white soap bottle directly under the gun barrel for a dense, clinging snow foam blanket that dissolves grease, dirt, and road grime before you touch the paint.
+                Snap the included white soap foam bottle directly onto the front lance nozzle for a dense, clinging snow foam blanket that dissolves grease, dirt, and road grime before you touch the paint.
               </p>
             </div>
           </div>
@@ -1060,7 +1060,7 @@ function LandingPageContent() {
               Swap batteries, keep going
             </div>
             <div className="p-4 border-l border-[#F3F1EC]/10 flex items-center gap-2 text-[#9BA1AC]">
-              <X className="w-4 h-4 text-[#9BA1AC] shrink-0" />
+              <X className="w-4 h-4 text-[#E23E2E] shrink-0" />
               Unlimited, but tethered
             </div>
           </div>
