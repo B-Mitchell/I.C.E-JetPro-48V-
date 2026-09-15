@@ -36,14 +36,14 @@ const HERO_IMG = "/images/hero.jpg";
 const FLATLAY_IMG = "/images/flatlay.jpg";
 const CASE_STUDIO_IMG = "/images/case.jpg";
 const CASE_REAL_IMG = "/images/case_closed_real.png";
-const ACTION_CAR_WASH_IMG = "/images/action_snow_foam_black.jpg";
+const ACTION_CAR_WASH_IMG = "/images/action_snow_foam_teal_v5.jpg";
 const ACTION_PATIO_BLAST_IMG = "/images/action_bucket_wash_v2.jpg";
 const ACTION_FARM_SPRAY_IMG = "/images/action_farm_crop_v2.jpg";
 const ACTION_COMPOUND_BLAST_IMG = "/images/action_compound_paver_v2.jpg";
 const ACTION_AC_CLEAN_IMG = "/images/action_ac_clean.jpg";
 const BATTERY_SWAP_IMG = "/images/battery_swap.jpg";
-const GUN_STUDIO_TEAL = "/images/gun_studio_v4.png";
-const SPRAY_MODES_DEMO = "/images/spray_modes_v4.jpg";
+const GUN_STUDIO_TEAL = "/images/gun_studio_teal_v5.png";
+const SPRAY_MODES_DEMO = "/images/spray_modes_teal_v5.jpg";
 const BRASS_QUICK_CONNECT = "/images/brass_quick_connect.jpg";
 const BATTERY_DETACHABLE_TEAL = "/images/battery_detachable_teal.jpg";
 
