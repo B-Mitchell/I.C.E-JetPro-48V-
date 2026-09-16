@@ -68,19 +68,19 @@ export const metadata: Metadata = {
       "Full pressure. No plug in sight. Dual 48V lithium-ion batteries, foam cannon bottle, and rugged impact case. Pay on delivery available across Nigeria, Ghana, and Kenya.",
     images: [
       {
-        url: `${siteUrl}/images/og-image.jpg`,
-        width: 1200,
-        height: 630,
+        url: `${siteUrl}/images/whatsapp_preview_v1.jpg`,
+        width: 600,
+        height: 600,
         alt: "I.C.E JetPro 48V Cordless Cleaning Gun",
       },
     ],
   },
   twitter: {
-    card: "summary_large_image",
+    card: "summary",
     title: "I.C.E JetPro 48V™ — Cordless High-Pressure Cleaning Gun",
     description:
       "Dual 48V lithium-ion batteries, high-torque pump, foam cannon bottle, and rugged hard case. Fast doorstep dispatch & pay on delivery.",
-    images: [`${siteUrl}/images/og-image.jpg`],
+    images: [`${siteUrl}/images/whatsapp_preview_v1.jpg`],
   },
   robots: {
     index: true,
@@ -202,6 +202,11 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/favicon.ico?v=4" sizes="any" />
         <link rel="shortcut icon" href="/favicon.ico?v=4" />
+        <meta property="og:image" content={`${siteUrl}/images/whatsapp_preview_v1.jpg`} />
+        <meta property="og:image:secure_url" content={`${siteUrl}/images/whatsapp_preview_v1.jpg`} />
+        <meta property="og:image:type" content="image/jpeg" />
+        <meta property="og:image:width" content="600" />
+        <meta property="og:image:height" content="600" />
         {/* Google Structured Data (JSON-LD) */}
         <script
           type="application/ld+json"
