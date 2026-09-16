@@ -42,7 +42,7 @@ const ACTION_FARM_SPRAY_IMG = "/images/action_farm_crop_v2.jpg";
 const ACTION_COMPOUND_BLAST_IMG = "/images/action_compound_paver_v2.jpg";
 const ACTION_AC_CLEAN_IMG = "/images/action_ac_clean.jpg";
 const BATTERY_SWAP_IMG = "/images/battery_swap.jpg";
-const GUN_STUDIO_TEAL = "/images/gun_isolated_real.png";
+const GUN_STUDIO_TEAL = "/images/gun_studio_teal_v5.png";
 const SPRAY_MODES_DEMO = "/images/spray_modes_teal_v5.jpg";
 const BRASS_QUICK_CONNECT = "/images/brass_quick_connect.jpg";
 const BATTERY_DETACHABLE_TEAL = "/images/battery_detachable_teal.jpg";
@@ -147,7 +147,7 @@ function LandingPageContent() {
   const [quantity, setQuantity] = useState<number>(1);
   const [cartCount, setCartCount] = useState<number>(0);
   const [showToast, setShowToast] = useState<boolean>(false);
-  const [caseViewMode, setCaseViewMode] = useState<"studio" | "real">("real");
+  const [caseViewMode, setCaseViewMode] = useState<"studio" | "real">("studio");
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
 
   const handleAddToCart = () => {
@@ -1142,15 +1142,6 @@ function LandingPageContent() {
             {/* View Switcher Tabs */}
             <div className="flex items-center gap-2 mb-3">
               <button
-                onClick={() => setCaseViewMode("real")}
-                className={`text-xs font-display uppercase tracking-wider px-4 py-2 border transition-all cursor-pointer teardrop-btn-static ${caseViewMode === "real"
-                    ? "bg-[#17B4C9] text-[#101114] border-[#17B4C9] font-bold shadow-md shadow-[#17B4C9]/20"
-                    : "bg-[#17191D] text-[#9BA1AC] border-[#F3F1EC]/20 hover:text-[#F3F1EC]"
-                  }`}
-              >
-                Actual Kit Case
-              </button>
-              <button
                 onClick={() => setCaseViewMode("studio")}
                 className={`text-xs font-display uppercase tracking-wider px-4 py-2 border transition-all cursor-pointer teardrop-btn-static ${caseViewMode === "studio"
                     ? "bg-[#17B4C9] text-[#101114] border-[#17B4C9] font-bold shadow-md shadow-[#17B4C9]/20"
@@ -1159,18 +1150,27 @@ function LandingPageContent() {
               >
                 Studio Perspective
               </button>
+              <button
+                onClick={() => setCaseViewMode("real")}
+                className={`text-xs font-display uppercase tracking-wider px-4 py-2 border transition-all cursor-pointer teardrop-btn-static ${caseViewMode === "real"
+                    ? "bg-[#17B4C9] text-[#101114] border-[#17B4C9] font-bold shadow-md shadow-[#17B4C9]/20"
+                    : "bg-[#17191D] text-[#9BA1AC] border-[#F3F1EC]/20 hover:text-[#F3F1EC]"
+                  }`}
+              >
+                Actual Kit Case
+              </button>
             </div>
 
             <div className="border border-[#F3F1EC]/10 p-4 bg-[#17191D] relative">
               <Image
-                src={caseViewMode === "real" ? CASE_REAL_IMG : CASE_STUDIO_IMG}
+                src={caseViewMode === "studio" ? CASE_STUDIO_IMG : CASE_REAL_IMG}
                 alt="Cleaning gun carry case, closed"
                 width={500}
                 height={500}
                 className="w-full max-w-sm mx-auto h-[380px] object-contain"
               />
               <div className="absolute bottom-3 right-3 text-[10px] text-[#9BA1AC] uppercase font-mono bg-[#101114]/80 px-2 py-1">
-                {caseViewMode === "real" ? "Actual Production Label" : "Precision Molded View"}
+                {caseViewMode === "studio" ? "Precision Molded View" : "Actual Production Label"}
               </div>
             </div>
           </div>
