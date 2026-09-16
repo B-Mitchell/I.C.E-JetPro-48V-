@@ -53,12 +53,9 @@ export const metadata: Metadata = {
     address: true,
   },
   icons: {
-    icon: [
-      { url: "/icon.png", type: "image/png" },
-      { url: "/favicon.ico", sizes: "any" },
-    ],
-    shortcut: "/favicon.ico",
-    apple: "/apple-touch-icon.png",
+    icon: "/favicon.ico?v=4",
+    shortcut: "/favicon.ico?v=4",
+    apple: "/favicon.ico?v=4",
   },
   openGraph: {
     type: "website",
@@ -203,6 +200,8 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${oswald.variable} ${inter.variable} scroll-smooth`}>
       <head>
+        <link rel="icon" href="/favicon.ico?v=4" sizes="any" />
+        <link rel="shortcut icon" href="/favicon.ico?v=4" />
         {/* Google Structured Data (JSON-LD) */}
         <script
           type="application/ld+json"
