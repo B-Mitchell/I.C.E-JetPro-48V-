@@ -58,7 +58,7 @@ export const metadata: Metadata = {
       { url: "/favicon.ico", sizes: "any" },
     ],
     shortcut: "/favicon.ico",
-    apple: "/icon.svg",
+    apple: "/apple-touch-icon.png",
   },
   openGraph: {
     type: "website",
@@ -71,10 +71,10 @@ export const metadata: Metadata = {
       "Full pressure. No plug in sight. Dual 48V lithium-ion batteries, foam cannon bottle, and rugged impact case. Pay on delivery available across Nigeria, Ghana, and Kenya.",
     images: [
       {
-        url: "/images/hero.jpg",
+        url: `${siteUrl}/images/og-image.jpg`,
         width: 1200,
         height: 630,
-        alt: "I.C.E JetPro 48V Cordless Cleaning Gun Kit in Rugged Case",
+        alt: "I.C.E JetPro 48V Cordless Cleaning Gun",
       },
     ],
   },
@@ -83,7 +83,7 @@ export const metadata: Metadata = {
     title: "I.C.E JetPro 48V™ — Cordless High-Pressure Cleaning Gun",
     description:
       "Dual 48V lithium-ion batteries, high-torque pump, foam cannon bottle, and rugged hard case. Fast doorstep dispatch & pay on delivery.",
-    images: ["/images/hero.jpg"],
+    images: [`${siteUrl}/images/og-image.jpg`],
   },
   robots: {
     index: true,
@@ -111,7 +111,12 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "Product",
     name: "I.C.E JetPro 48V™ Cordless High-Pressure Cleaning Gun Kit",
-    image: [`${siteUrl}/images/hero.jpg`, `${siteUrl}/images/flatlay.jpg`],
+    image: [
+      `${siteUrl}/images/og-image.jpg`,
+      `${siteUrl}/images/gun_isolated_real.png`,
+      `${siteUrl}/images/hero.jpg`,
+      `${siteUrl}/images/flatlay.jpg`,
+    ],
     description:
       "Professional 48V cordless pressure washer gun kit with dual lithium-ion batteries, foam cannon, 5m hose, brass quick connectors, and rugged molded case.",
     brand: {
