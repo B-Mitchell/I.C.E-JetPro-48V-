@@ -30,6 +30,53 @@ function ThankYouContent() {
   const state = searchParams.get("state") || "";
   const country = searchParams.get("country") || "Nigeria";
 
+  // Track Meta & TikTok Conversion events once on order confirmation
+  const trackedRef = React.useRef(false);
+  React.useEffect(() => {
+    if (trackedRef.current) return;
+    trackedRef.current = true;
+
+    if (typeof window !== "undefined") {
+      const rawNumber = parseFloat(amount.replace(/[^0-9.]/g, "")) || 0;
+      const currency = country === "Ghana" ? "GHS" : country === "Kenya" ? "KES" : "NGN";
+
+      // Meta Pixel Purchase Event
+      if (typeof (window as any).fbq === "function") {
+        (window as any).fbq("track", "Purchase", {
+          content_name: pack,
+          content_type: "product",
+          value: rawNumber,
+          currency: currency,
+        });
+      }
+
+      // TikTok Pixel PlaceAnOrder & CompletePayment Events
+      if (
+        typeof (window as any).ttq !== "undefined" &&
+        typeof (window as any).ttq.track === "function"
+      ) {
+        (window as any).ttq.track("PlaceAnOrder", {
+          content_id: orderId || "ICE-JETPRO-48V",
+          content_type: "product",
+          content_name: pack,
+          quantity: 1,
+          price: rawNumber,
+          value: rawNumber,
+          currency: currency,
+        });
+        (window as any).ttq.track("CompletePayment", {
+          content_id: orderId || "ICE-JETPRO-48V",
+          content_type: "product",
+          content_name: pack,
+          quantity: 1,
+          price: rawNumber,
+          value: rawNumber,
+          currency: currency,
+        });
+      }
+    }
+  }, [amount, country, orderId, pack]);
+
   const displayRef = orderId ? `#${orderId.slice(0, 8).toUpperCase()}` : "#ICE-PENDING";
 
   const whatsappMessage = encodeURIComponent(
