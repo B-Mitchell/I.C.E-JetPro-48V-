@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabaseClient";
 import { useCurrency } from "@/lib/currencyContext";
 import CountrySelector from "./CountrySelector";
+import { trackInitiateCheckout } from "@/lib/tracking";
 import {
   Check,
   Truck,
@@ -134,6 +135,17 @@ export default function OrderForm() {
     }
 
     setIsSubmitting(true);
+
+    // Track InitiateCheckout on Meta & TikTok
+    trackInitiateCheckout(
+      {
+        id: selectedPackDef.id,
+        name: selectedPackDef.name,
+        price: getPackPrice(selectedPackId),
+        quantity: 1,
+      },
+      country.currency
+    );
 
     const packLabel = `${selectedPackDef.name} — ${currentPriceFormatted}`;
 
