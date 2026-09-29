@@ -31,14 +31,15 @@ function ThankYouContent() {
   const state = searchParams.get("state") || "";
   const country = searchParams.get("country") || "Nigeria";
 
-  // Track Meta & TikTok Conversion events once on order confirmation
+  // Track Meta & TikTok Conversion events once on mount (order confirmation)
   const trackedRef = React.useRef(false);
   React.useEffect(() => {
     if (trackedRef.current) return;
     trackedRef.current = true;
 
     const rawNumber = parseFloat(amount.replace(/[^0-9.]/g, "")) || 0;
-    const currency = country === "Ghana" ? "GHS" : country === "Kenya" ? "KES" : "NGN";
+    const currency =
+      country === "Ghana" ? "GHS" : country === "Kenya" ? "KES" : "NGN";
 
     trackPurchase({
       orderId: orderId || "ICE-JETPRO-48V",
@@ -48,7 +49,8 @@ function ThankYouContent() {
       country: country,
       phone: phone,
     });
-  }, [amount, country, orderId, pack, phone]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // run only once on mount — params come from URL and never change
 
   const displayRef = orderId ? `#${orderId.slice(0, 8).toUpperCase()}` : "#ICE-PENDING";
 

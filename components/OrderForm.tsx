@@ -136,7 +136,7 @@ export default function OrderForm() {
 
     setIsSubmitting(true);
 
-    // Track InitiateCheckout on Meta & TikTok
+    // Track InitiateCheckout on Meta & TikTok (phone passed for TikTok Advanced Matching)
     trackInitiateCheckout(
       {
         id: selectedPackDef.id,
@@ -144,7 +144,8 @@ export default function OrderForm() {
         price: getPackPrice(selectedPackId),
         quantity: 1,
       },
-      country.currency
+      country.currency,
+      `${country.phonePrefix}${phone.trim()}`
     );
 
     const packLabel = `${selectedPackDef.name} — ${currentPriceFormatted}`;
