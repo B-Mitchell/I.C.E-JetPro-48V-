@@ -139,7 +139,7 @@ export default function OrderForm() {
     // Track InitiateCheckout on Meta & TikTok (phone passed for TikTok Advanced Matching)
     trackInitiateCheckout(
       {
-        id: selectedPackDef.id,
+        id: "ICE-JETPRO-48V",
         name: selectedPackDef.name,
         price: getPackPrice(selectedPackId),
         quantity: 1,
@@ -563,6 +563,8 @@ export default function OrderForm() {
           <button
             type="submit"
             disabled={isSubmitting}
+            data-content-id="ICE-JETPRO-48V"
+            data-content-type="product"
             className="w-full sm:w-auto font-display bg-[#17B4C9] text-[#101114] font-bold text-lg px-10 py-4 uppercase tracking-wider hover:bg-[#F3F1EC] transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-xl shadow-[#17B4C9]/25 flex items-center justify-center gap-3 cursor-pointer teardrop-btn"
           >
             {isSubmitting ? (

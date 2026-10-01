@@ -1,10 +1,11 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import OrderForm from "@/components/OrderForm";
 import CountrySelector from "@/components/CountrySelector";
 import { CurrencyProvider, useCurrency } from "@/lib/currencyContext";
+import { trackViewContent, trackAddToCart } from "@/lib/tracking";
 import {
   Zap,
   Battery,
@@ -150,9 +151,30 @@ function LandingPageContent() {
   const [caseViewMode, setCaseViewMode] = useState<"studio" | "real">("studio");
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
 
+  useEffect(() => {
+    trackViewContent(
+      {
+        id: "ICE-JETPRO-48V",
+        name: "I.C.E JetPro 48V™ Cordless Cleaning Gun Kit",
+        price: country.singlePrice,
+        quantity: 1,
+      },
+      country.currency
+    );
+  }, [country]);
+
   const handleAddToCart = () => {
     setCartCount((prev) => prev + quantity);
     setShowToast(true);
+    trackAddToCart(
+      {
+        id: "ICE-JETPRO-48V",
+        name: "I.C.E JetPro 48V™ Cordless Cleaning Gun Kit",
+        price: country.singlePrice,
+        quantity: quantity,
+      },
+      country.currency
+    );
     setTimeout(() => setShowToast(false), 3500);
   };
 
@@ -218,6 +240,18 @@ function LandingPageContent() {
 
             <a
               href="#buy"
+              data-content-id="ICE-JETPRO-48V"
+              data-content-type="product"
+              onClick={() => {
+                trackViewContent(
+                  {
+                    id: "ICE-JETPRO-48V",
+                    name: "I.C.E JetPro 48V™ Cordless Cleaning Gun Kit",
+                    price: country.singlePrice,
+                  },
+                  country.currency
+                );
+              }}
               className="text-xs sm:text-sm font-medium tracking-wider uppercase bg-[#17B4C9] text-[#101114] hover:bg-[#F3F1EC] px-4 sm:px-5 py-1.5 sm:py-2 transition-all font-display font-bold shadow-sm shadow-[#17B4C9]/30 teardrop-btn inline-flex items-center gap-1.5"
             >
               <span>Order Now</span>
@@ -1307,6 +1341,18 @@ function LandingPageContent() {
           </div>
           <a
             href="#buy"
+            data-content-id="ICE-JETPRO-48V"
+            data-content-type="product"
+            onClick={() => {
+              trackViewContent(
+                {
+                  id: "ICE-JETPRO-48V",
+                  name: "I.C.E JetPro 48V™ Cordless Cleaning Gun Kit",
+                  price: country.singlePrice,
+                },
+                country.currency
+              );
+            }}
             className="bg-[#17B4C9] text-[#101114] font-display font-bold text-xs uppercase tracking-wider px-5 py-2.5 shadow-lg shadow-[#17B4C9]/25 flex items-center gap-1.5 hover:bg-[#F3F1EC] transition-all shrink-0 teardrop-btn"
           >
             <span>Order Now</span>
